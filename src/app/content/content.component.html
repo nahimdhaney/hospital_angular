@@ -1,0 +1,75 @@
+
+<mat-grid-list  cols="2" >
+    <!-- <mat-grid-tile colspan=1 rowspan=2>Hospitales</mat-grid-tile> -->
+    <mat-grid-tile >
+        <mat-nav-list >
+            <!-- {{hospitals}} -->
+            <table mat-table [dataSource]="hospitals" class="mat-elevation-z8" class="container">
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+              
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef> No. </th>
+                  <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let element" > {{element.name}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="date">
+                  <th mat-header-cell *matHeaderCellDef> Date </th>
+                  <td mat-cell *matCellDef="let element"> {{element.create_on}} </td>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell  *matHeaderCellDef > See </mat-header-cell>
+                    <mat-cell *matCellDef="let element" >
+                         <!-- <button mat-button routerLink=['/hospitals', element.name]  >See</button> -->
+                         <a mat-button (click)="navigateTo(element.id)" target="_blank">Link</a>
+                    </mat-cell>
+                  </ng-container>              
+                <!-- Symbol Column -->
+                <!-- <ng-container matColumnDef="symbol">
+                  <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container> -->
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row 
+                *matRowDef="let row; columns: displayedColumns; let i = index"
+                (click)="navigateTo(row)"
+                class="row-hover"
+                ></tr>
+              </table>
+            <!-- <a mat-list-item href="..." *ngFor="let link of links"> {{ link }} </a> -->
+         </mat-nav-list>
+    </mat-grid-tile>
+    <mat-grid-tile   >
+
+        <mat-list role="list">
+            <mat-list-item role="listitem">
+                <a matLine routerLink="/hospitals"><button mat-button color="primary">Hospital</button></a>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <a matLine routerLink="/doctors"><button mat-button color="primary">Doctors</button></a>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <a matLine routerLink="/specialty"><button mat-button color="primary">Specialities</button></a>
+            </mat-list-item>
+          </mat-list>
+        <!-- <button mat-button color="primary">Primary</button>
+        <button mat-button color="primary">Primary</button>
+        <button mat-button color="primary">Primary</button> -->
+
+    </mat-grid-tile>
+
+    <!-- <mat-grid-tile>4</mat-grid-tile> -->
+  </mat-grid-list>
+
+<p>content works!</p>
+<!-- <mat-card>
+    carta 1
+</mat-card> -->
